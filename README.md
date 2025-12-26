@@ -1,9 +1,42 @@
-<img width="128px" src="https://github.com/leekleak/traffic-light/blob/main/fastlane/metadata/android/en-US/images/icon.png?raw=true" alt="Logo">
+<img width="128px" src="https://github.com/hyperstown/traffic-light-legacy/blob/main/fastlane/metadata/android/en-US/images/icon.png?raw=true" alt="Logo">
 
-# Traffic Light
-Traffic Light is an open-source tool to track your network speed and data usage inspired by Internet Speed Meter.
+# Traffic Light (Legacy)
+Traffic Light is an open-source tool to track your network speed and data usage inspired by Internet Speed Meter and created by [leekleak](https://github.com/leekleak/). **This fork aims to provide support for older devices (Android 6+) as original app goes only as low as Android 8.**
+
+## QA
+
+- Q: How to download? \
+  A: Go to [releases page](/release) and download apk.
+
+- Q: Why not upstream the changes?\
+  A: Even if now it is possible to make it work on Android 6 sooner rather than later it will be just extremely difficult to build for older Androids. 
+  I don't want to burden original dev with spaghetti code that increases userbase by 3 people.
+
+- Q: Do you plan to maintain this project in a way it's constantly in up to date with upstream? \
+  A: No. Android 6 is a dead platform, at some point backporting this app will be near impossible. I might sync with the upstream from time to time but right now it's safe to assume it's the last version.
+
+- Q: Why don't you support Android 5 or 4.4 or 1.0? \
+  A: Android 7 is the oldest Android that I can emulate without issues in Android Studio, Android 6 is the oldest Android I still have access to. If you really want to make it work on Android 5 or 4.x you can send PR, but core functionality should be the same.
+
+- Q: Can I use it on newer Android? \
+  A: Yes but why? Just go to [original project](https://github.com/leekleak/traffic-light/)
+
+- Q: Part of the app doesn't work, what should I do? \
+  A: You can create an issue but due to my limited time and the fact that Android 6 is a dead platform I probably won't fix it. PRs are welcome of course. Please don't report known issues as well.
+
+- Q: Can I request a feature?\
+  A: Request it in upstream. If it's already in upstream you can request a sync.
+
+
+## Know issues
+
+- Theme switcher doesn't work
+- Some M3 icons in app are blurry
 
 ## Why?
+- Why not?
+
+## Why Traffic Light?
 - Free and open source
 - Uses [fewer permissions](https://github.com/leekleak/traffic-light/wiki/Permissions)
 - Uses [less battery](https://github.com/leekleak/traffic-light/wiki/Battery-Usage)
@@ -13,31 +46,10 @@ Traffic Light is an open-source tool to track your network speed and data usage 
 
 ## Downloads
 
-| [<img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/en/packages/com.leekleak.trafficlight/) | [<img alt='Get it on GitHub' height="80" src='branding/badge_github.png'>](https://github.com/leekleak/traffic-light/releases) |
-|-------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+[<img alt='Get it on GitHub' height="80" src='branding/badge_github.png'>](/releases) |
+--------------------------------------------------------------------------------------------------------------------------------|
 
 ## Screenshots
 
 | ![Screenshot 1](fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot01.png) | ![Screenshot 2](fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot02.png) | ![Screenshot 3](fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot03.png) | ![Screenshot 4](fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot04.png) |
 |-------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-
-## Feedback
-
-Make sure to follow the __issue template__ when reporting bugs or suggesting features! Reports not following the general outline will be closed without further consideration.
-
-## Contributions
-
-### Code
-Contributors are welcome, however as I'm quite jaded, please create an issue first. Unless I deem it incredibly useful, I doubt I'll accept any major new features, so please tell me first so as to not be disappointed.
-
-### Translations
-[<img src="https://hosted.weblate.org/widget/traffic-light/multi-auto.svg" alt="Translation status" />](https://hosted.weblate.org/engage/traffic-light/)
-
-Translation can be done on [Weblate](https://hosted.weblate.org/engage/traffic-light/)
-
-## Troubleshooting
-Check out the troubleshooting wiki [page](https://github.com/leekleak/traffic-light/wiki/Troubleshooting).
-
-## Blog post
-I wrote a little blog post about this project, why I made it and how it turned out the way it did. You can read it [here](https://tintotint.eu/programming/traffic-light/)
-
