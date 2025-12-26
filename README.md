@@ -6,7 +6,7 @@ Traffic Light is an open-source tool to track your network speed and data usage 
 ## QA
 
 - Q: How to download? \
-  A: Go to [releases page](/release) and download apk.
+  A: Go to [releases page](https://github.com/hyperstown/traffic-light-legacy/releases) and download apk.
 
 - Q: Why not upstream the changes?\
   A: Even if now it is possible to make it work on Android 6 sooner rather than later it will be just extremely difficult to build for older Androids. 
@@ -46,7 +46,7 @@ Traffic Light is an open-source tool to track your network speed and data usage 
 
 ## Downloads
 
-[<img alt='Get it on GitHub' height="80" src='branding/badge_github.png'>](/releases) |
+[<img alt='Get it on GitHub' height="80" src='branding/badge_github.png'>](https://github.com/hyperstown/traffic-light-legacy/releases) |
 --------------------------------------------------------------------------------------------------------------------------------|
 
 ## Screenshots
