@@ -1,6 +1,6 @@
 package com.leekleak.trafficlight.charts
 
-import android.os.VibrationEffect
+import android.os.Build
 import android.os.Vibrator
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.EaseIn
@@ -35,7 +35,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-
 @Composable
 fun BarGraph(
     data: List<BarData>,
@@ -66,12 +65,18 @@ private fun BarGraphImpl(
 ) {
     val scope = rememberCoroutineScope()
     val vibrator = LocalContext.current.getSystemService(Vibrator::class.java)
-    val vibrationEffectStrong = VibrationEffect.createOneShot(80, 200)
-    val vibrationEffectMedium = VibrationEffect.createOneShot(40, 100)
-    val vibrationEffectWeak = VibrationEffect.createOneShot(40,50)
+
+    // Compatibility helper for vibrations
+    fun Vibrator.vibrateCompat(duration: Long) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vibrate(android.os.VibrationEffect.createOneShot(duration, android.os.VibrationEffect.DEFAULT_AMPLITUDE))
+        } else {
+            @Suppress("DEPRECATION")
+            vibrate(duration)
+        }
+    }
 
     val backgroundColor = GraphTheme.backgroundColor
-
     val primaryColor = GraphTheme.primaryColor
     val secondaryColor = GraphTheme.secondaryColor
     val onPrimaryColor = GraphTheme.onPrimaryColor
@@ -101,6 +106,7 @@ private fun BarGraphImpl(
     val cellularAnimation = remember { Animatable(0f) }
     val barAnimationSqueeze = remember { List(yAxisData.size * 2) { Animatable(0f) } }
     val barAnimation = remember { List(yAxisData.size) { Animatable(0f) } }
+
     LaunchedEffect(yAxisData) {
         for (i in 0..<barAnimation.size) {
             launch(Dispatchers.IO) {
@@ -116,16 +122,20 @@ private fun BarGraphImpl(
     var cellularOffset: Offset = Offset.Zero
     val barOffset = remember { mutableListOf<Bar>() }
 
-    suspend fun legendAnimator(clickOffset: Offset, legendOffset: Offset, animation: Animatable<Float, *>, legendStrength: MutableIntState) {
+    suspend fun legendAnimator(
+        clickOffset: Offset,
+        legendOffset: Offset,
+        animation: Animatable<Float, *>,
+        legendStrength: MutableIntState
+    ) {
         if (
             (clickOffset - legendOffset).x in (0f..legendSize) &&
             (clickOffset - legendOffset).y in (0f..legendSize) &&
             legendStrength.intValue != 0
         ) {
             legendStrength.intValue -= 1
-            vibrator.vibrate(
-                if (legendStrength.intValue == 0) vibrationEffectStrong
-                else vibrationEffectMedium
+            vibrator?.vibrateCompat(
+                if (legendStrength.intValue == 0) 80 else 40
             )
             animation.animateTo(
                 targetValue = if (animation.targetValue == 15f) 0f else 15f,
@@ -139,7 +149,7 @@ private fun BarGraphImpl(
             (clickOffset - bar.rect.topLeft).x in (0f..bar.rect.size.width) &&
             (clickOffset - bar.rect.topLeft).y in (0f..bar.rect.size.height)
         ) {
-            vibrator.vibrate(vibrationEffectWeak)
+            vibrator?.vibrateCompat(40)
             launch {
                 animation.animateTo(
                     targetValue = 8f,
@@ -181,7 +191,6 @@ private fun BarGraphImpl(
 
         barOffset.clear()
         barOffset.addAll(barGraphHelper.metrics.rectList)
-        barGraphHelper.metrics.rectList
         wifiOffset = barGraphHelper.metrics.wifiIconOffset
         cellularOffset = barGraphHelper.metrics.cellularIconOffset
 
@@ -213,4 +222,3 @@ private fun BarGraphImpl(
         barGraphHelper.drawBars(cornerRadius, primaryColor, secondaryColor, barAnimationSqueeze)
     }
 }
-

@@ -3,6 +3,7 @@ package com.leekleak.trafficlight
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Bundle
+import android.os.Build
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -29,12 +30,14 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun createNotificationChannel() {
-        val name = "Traffic Light Service"
-        val importance = NotificationManager.IMPORTANCE_DEFAULT
-        val channel = NotificationChannel(NOTIFICATION_CHANNEL_ID, name, importance).apply {
-            setShowBadge(false)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Traffic Light Service"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(NOTIFICATION_CHANNEL_ID, name, importance).apply {
+                setShowBadge(false)
+            }
+            val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
         }
-        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.createNotificationChannel(channel)
     }
 }

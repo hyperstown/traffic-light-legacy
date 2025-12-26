@@ -3,6 +3,7 @@ package com.leekleak.trafficlight.services
 import android.app.Notification
 import android.app.NotificationManager
 import android.app.PendingIntent
+import androidx.core.content.res.ResourcesCompat
 import android.app.Service
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -275,7 +276,7 @@ class UsageService : Service(), KoinComponent {
     private val paint by lazy {
         Paint().apply {
             color = ContextCompat.getColor(this@UsageService, R.color.white)
-            typeface = resources.getFont(R.font.roboto_condensed_semi_bold)
+            typeface = ResourcesCompat.getFont(this@UsageService, R.font.roboto_condensed_semi_bold)
             textAlign = Paint.Align.CENTER
         }
     }

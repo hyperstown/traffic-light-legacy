@@ -13,12 +13,13 @@ android {
 
     defaultConfig {
         applicationId = "com.leekleak.trafficlight"
-        minSdk = 26
+        minSdk = 23
         targetSdk = 36
         versionCode = 9
         versionName = "2.6"
         base.archivesName = "$namespace-$versionName"
     }
+
     buildTypes {
         release {
             signingConfig = signingConfigs.getByName("debug")
@@ -32,34 +33,43 @@ android {
             applicationIdSuffix = ".debug"
         }
     }
+
     androidResources {
         generateLocaleConfig = true
     }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlin {
         compilerOptions {
-            jvmTarget = JvmTarget.fromTarget("11")
+            jvmTarget = JvmTarget.fromTarget("1.8")
         }
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.15"
     }
+
     buildFeatures {
         compose = true
         buildConfig = true
     }
+
     dependenciesInfo {
-        // Disables dependency metadata when building APKs.
         includeInApk = false
-        // Disables dependency metadata when building Android App Bundles.
         includeInBundle = false
     }
+
     lint {
         abortOnError = false
     }
+}
+
+android {
+    compileOptions.isCoreLibraryDesugaringEnabled = true
 }
 
 dependencies {
@@ -88,4 +98,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
     implementation(libs.timber)
+
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 }
