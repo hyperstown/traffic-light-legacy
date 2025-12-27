@@ -3,7 +3,7 @@
 # Traffic Light (Legacy)
 Traffic Light is an open-source tool to track your network speed and data usage inspired by Internet Speed Meter and created by [leekleak](https://github.com/leekleak/). **This fork aims to provide support for older devices (Android 6+) as original app goes only as low as Android 8.**
 
-## QA
+## Q&A
 
 - Q: How to download? \
   A: Go to [releases page](https://github.com/hyperstown/traffic-light-legacy/releases) and download apk.
@@ -30,8 +30,7 @@ Traffic Light is an open-source tool to track your network speed and data usage 
 
 ## Know issues
 
-- Theme switcher doesn't work
-- Some M3 icons in app are blurry
+- Material You theme switcher doesn't work
 
 ## Why?
 - Why not?
