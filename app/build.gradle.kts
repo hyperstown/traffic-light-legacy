@@ -16,7 +16,7 @@ android {
         minSdk = 23
         targetSdk = 36
         versionCode = 9
-        versionName = "2.6"
+        versionName = "2.6.1"
         base.archivesName = "$namespace-$versionName"
     }
 
